@@ -17,6 +17,8 @@
 #  limitations under the License.
 #
 
+. /usr/lib/bigtop-utils/bigtop-detect-javahome
+
 # The app's label
 export APP_LABEL=LDAP
 
