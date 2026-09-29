@@ -37,8 +37,14 @@
     <rule dir="OUT" name="RANGERUI/rangerui/outbound/styles" pattern="styles/{**}">
         <rewrite template="{$frontend[path]}/ranger/styles/{**}"/>
     </rule>
-    <rule dir="OUT" name="RANGERUI/rangerui/outbound/styles" pattern="images/{**}">
+    <rule dir="OUT" name="RANGERUI/rangerui/outbound/images" pattern="images/{**}">
         <rewrite template="{$frontend[path]}/ranger/images/{**}"/>
+    </rule>
+    <rule dir="OUT" name="RANGERUI/rangerui/outbound/images/root" pattern="/images/{**}">
+        <rewrite template="{$frontend[path]}/ranger/images/{**}"/>
+    </rule>
+    <rule dir="OUT" name="RANGERUI/rangerui/outbound/images/parent" pattern="../images/{**}">
+        <rewrite template="images/{**}"/>
     </rule>
     <rule dir="OUT" name="RANGERUI/rangerui/outbound/init" pattern="scripts/Init.js?ver=build.version">
         <rewrite template="{$frontend[path]}/ranger/scripts/Init.js?ver=build.version"/>
@@ -55,6 +61,10 @@
         <content type="application/javascript">
             <apply path="j_spring_security_check" rule="RANGERUI/rangerui/outbound/extrapath"/>
             <apply path="index.html" rule="RANGERUI/rangerui/outbound/index"/>
+            <apply path="../images/[\w.-]+" rule="RANGERUI/rangerui/outbound/images/parent"/>
+        </content>
+        <content type="text/javascript">
+            <apply path="../images/[\w.-]+" rule="RANGERUI/rangerui/outbound/images/parent"/>
         </content>
         <content type="*/html">
         </content>
